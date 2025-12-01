@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+bin/
+dist/
+tmp/
+temp/
+
+# Logs
+*.log
+logs/
+
+# Test files
+*_test.go
+**/*_test.go
+coverage.*
+
+# Docker
+docker-compose.yaml
+docker-compose.*.yaml
+Dockerfile*
+.dockerignore
+
+# Dependencies
+vendor/
+
+# Misc
+*.bak
+*.tmp

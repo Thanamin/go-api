@@ -1,0 +1,42 @@
+# Build stage
+FROM golang:1.23-alpine AS builder
+
+# Install build dependencies
+RUN apk add --no-cache git make
+
+WORKDIR /app
+
+# Copy go mod files
+COPY go.mod go.sum ./
+
+# Download dependencies
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Build argument for environment (dev, staging, production)
+ARG BUILD_ENV=dev
+
+# Build the application
+# Use optimized build for staging and production
+RUN CGO_ENABLED=0 GOOS=linux go build \
+    $(if [ "$BUILD_ENV" = "staging" ] || [ "$BUILD_ENV" = "production" ]; then echo "-ldflags='-w -s'"; fi) \
+    -o bin/api ./cmd/api
+
+# Runtime stage
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /app
+
+# Copy binary and migrations
+COPY --from=builder /app/bin/api .
+COPY --from=builder /app/migrations ./migrations
+
+# Expose port
+EXPOSE 3000
+
+# Run the binary
+CMD ["./api"]
