@@ -18,15 +18,15 @@ func (m *HospitalMapper) ToEntity(dbModel *model.HospitalModel) *hospital.Hospit
 	}
 
 	return &hospital.Hospital{
-		ID:        dbModel.ID,
-		NameTh:    dbModel.NameTh,
-		NameEn:    dbModel.NameEn,
-		Email:     dbModel.Email,
-		Tel:       dbModel.Tel,
-		Address:   dbModel.Address,
-		CreatedAt: dbModel.CreatedAt,
-		UpdatedAt: dbModel.UpdatedAt,
-		DeletedAt: dbModel.DeletedAt,
+		ID:          dbModel.ID,
+		NameTh:      dbModel.NameTh,
+		NameEn:      dbModel.NameEn,
+		Email:       dbModel.Email,
+		PhoneNumber: dbModel.PhoneNumber,
+		Address:     dbModel.Address,
+		CreatedAt:   dbModel.CreatedAt,
+		UpdatedAt:   dbModel.UpdatedAt,
+		DeletedAt:   dbModel.DeletedAt,
 	}
 }
 
@@ -37,15 +37,15 @@ func (m *HospitalMapper) ToModel(entity *hospital.Hospital) *model.HospitalModel
 	}
 
 	return &model.HospitalModel{
-		ID:        entity.ID,
-		NameTh:    entity.NameTh,
-		NameEn:    entity.NameEn,
-		Email:     entity.Email,
-		Tel:       entity.Tel,
-		Address:   entity.Address,
-		CreatedAt: entity.CreatedAt,
-		UpdatedAt: entity.UpdatedAt,
-		DeletedAt: entity.DeletedAt,
+		ID:          entity.ID,
+		NameTh:      entity.NameTh,
+		NameEn:      entity.NameEn,
+		Email:       entity.Email,
+		PhoneNumber: entity.PhoneNumber,
+		Address:     entity.Address,
+		CreatedAt:   entity.CreatedAt,
+		UpdatedAt:   entity.UpdatedAt,
+		DeletedAt:   entity.DeletedAt,
 	}
 }
 
