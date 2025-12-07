@@ -15,7 +15,7 @@ type StaffModel struct {
 	FirstNameEn  string     `gorm:"column:first_name_en" json:"first_name_en"`
 	MiddleNameEn string     `gorm:"column:middle_name_en" json:"middle_name_en"`
 	LastNameEn   string     `gorm:"column:last_name_en" json:"last_name_en"`
-	Email        string     `gorm:"column:email" json:"email"`
+	Email        string     `gorm:"column:email;unique" json:"email"`
 	Position     string     `gorm:"column:position" json:"position"`
 	CreatedAt    time.Time  `gorm:"column:created_at;autoCreateTime" json:"created_at"`
 	UpdatedAt    time.Time  `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"`

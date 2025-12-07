@@ -30,3 +30,13 @@ func NewHospitalRepository(db *gorm.DB) *HospitalRepository {
 		Mapper:            mapper,
 	}
 }
+
+// Exists checks if a hospital exists by ID
+func (r *HospitalRepository) Exists(ctx context.Context, id int) (bool, error) {
+	var count int64
+	err := r.ModelWithContext(ctx).Where("id = ? AND deleted_at IS NULL", id).Count(&count).Error
+	if err != nil {
+		return false, err
+	}
+	return count > 0, nil
+}

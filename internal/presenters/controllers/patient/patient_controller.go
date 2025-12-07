@@ -69,7 +69,7 @@ func (c *PatientController) Search(ctx *gin.Context) {
 	// Execute search use case
 	patients, err := c.searchUseCase.Execute(ctx.Request.Context(), &params)
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to search patients"})
 		return
 	}
 

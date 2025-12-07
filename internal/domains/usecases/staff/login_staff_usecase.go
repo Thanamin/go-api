@@ -24,7 +24,7 @@ func InitLogin(authService *auth.AuthService, staffRepo *repositories.StaffRepos
 func (uc *LoginStaffUseCase) Execute(ctx context.Context, email, password string) (*entity.Staff, error) {
 	staff, err := uc.StaffRepo.FindByEmail(ctx, email)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("invalid credentials")
 	}
 
 	if err := uc.verifyPassword(staff, password); err != nil {
@@ -36,7 +36,7 @@ func (uc *LoginStaffUseCase) Execute(ctx context.Context, email, password string
 
 func (uc *LoginStaffUseCase) verifyPassword(staff *entity.Staff, password string) error {
 	if err := uc.authService.DecryptPassword(password, staff.PasswordHash); err != nil {
-		return fmt.Errorf("invalid credentials: %w", err)
+		return fmt.Errorf("invalid credentials")
 	}
 	return nil
 }

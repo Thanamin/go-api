@@ -59,25 +59,3 @@ func GetAuthClaims(c *gin.Context) (*auth.JWTClaims, bool) {
 	authClaims, ok := claims.(*auth.JWTClaims)
 	return authClaims, ok
 }
-
-// GetStaffID retrieves staff ID from context
-func GetStaffID(c *gin.Context) (int, bool) {
-	staffID, exists := c.Get("staff_id")
-	if !exists {
-		return 0, false
-	}
-
-	id, ok := staffID.(int)
-	return id, ok
-}
-
-// GetHospitalID retrieves hospital ID from context
-func GetHospitalID(c *gin.Context) (int, bool) {
-	hospitalID, exists := c.Get("hospital_id")
-	if !exists {
-		return 0, false
-	}
-
-	id, ok := hospitalID.(int)
-	return id, ok
-}

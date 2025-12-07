@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS staffs (
     first_name_en VARCHAR(255),
     middle_name_en VARCHAR(255),
     last_name_en VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     position VARCHAR(255),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -81,8 +81,6 @@ CREATE TABLE IF NOT EXISTS patients (
 -- Create indexes for patients
 CREATE INDEX idx_patients_national_id ON patients(national_id);
 CREATE INDEX idx_patients_passport_id ON patients(passport_id);
--- Unique per hospital: composite unique index on hospital_id + patient_hn
-CREATE UNIQUE INDEX idx_patients_hospital_patient_hn ON patients(hospital_id, patient_hn);
 CREATE INDEX idx_patients_hospital_id ON patients(hospital_id);
 CREATE INDEX idx_patients_deleted_at ON patients(deleted_at);
 

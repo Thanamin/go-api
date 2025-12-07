@@ -13,9 +13,10 @@ import (
 func InitUseCases(db *gorm.DB, mappers *bt.Mappers, services *Services) *bt.UseCases {
 	patientRepo := repositories.NewPatientRepository(db)
 	staffRepo := repositories.NewStaffRepository(db)
+	hospitalRepo := repositories.NewHospitalRepository(db)
 
 	return &bt.UseCases{
-		StaffCreate:   staffUseCase.InitCreate(services.Auth, staffRepo),
+		StaffCreate:   staffUseCase.InitCreate(services.Auth, staffRepo, hospitalRepo),
 		StaffLogin:    staffUseCase.InitLogin(services.Auth, staffRepo),
 		PatientSearch: patientUseCase.InitSearch(patientRepo, mappers.Patient),
 	}

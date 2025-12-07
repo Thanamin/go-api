@@ -63,7 +63,27 @@ func (c *StaffController) Create(ctx *gin.Context) {
 	}
 
 	if err := c.createUseCase.Execute(ctx.Request.Context(), staff); err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		// Handle different error types
+		errMsg := err.Error()
+
+		// Check for validation errors (400 Bad Request)
+		if errMsg == "username is required" ||
+			errMsg == "password is required" ||
+			errMsg == "email is required" ||
+			errMsg == "hospital_id is required" ||
+			errMsg == "invalid hospital_id" {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": errMsg})
+			return
+		}
+
+		// Check for duplicate key violations (409 Conflict)
+		if errMsg == "username already exists" || errMsg == "email already exists" {
+			ctx.JSON(http.StatusConflict, gin.H{"error": errMsg})
+			return
+		}
+
+		// Generic internal server error (don't expose DB details)
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create staff"})
 		return
 	}
 
