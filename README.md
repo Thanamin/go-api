@@ -1,6 +1,10 @@
 # Go API - Hospital Management System
 
-A Go-based RESTful API for hospital management system built with Clean Architecture principles.
+A Go-based RESTful API for a hospital management system built with Clean Architecture principles.
+
+I started this project as my first serious attempt at building a Go API. Since I’m still new to Go, I may make mistakes along the way. I also used AI to help generate certain parts of the code, but the main goal of this project is to learn the language properly, understand best practices, and eventually create a reusable template for future Go projects.
+
+If you have any suggestions or see areas for improvement, I’d really appreciate the feedback. My background is mainly in TypeScript, so this project is an important step for me to level up my skills in Go
 
 ## 🚀 Tech Stack
 
@@ -32,16 +36,19 @@ go mod download
 ### 3. Setup environment variables
 
 **For Docker Compose (PostgreSQL):**
+
 ```bash
 cp docker/docker-compose.env_template docker/.env
 ```
 
 **For Go API (Project):**
+
 ```bash
 cp .env.example .env
 ```
 
 Edit `.env` in project root as needed:
+
 - `DB_HOST=localhost` (connect to Docker PostgreSQL from host)
 - `PORT=3000` (or your preferred port)
 - `JWT_SECRET` and `HASH_SECRET` (change to secure keys)
@@ -79,18 +86,21 @@ Note: Use the PORT from your `.env` file
 ## 🛠️ Development
 
 **Hot reload (auto-restart on file changes)**
+
 ```bash
 go install github.com/cespare/reflex@latest
 make dev
 ```
 
 **Build binary**
+
 ```bash
 make build
 ./bin/api
 ```
 
 **Run tests**
+
 ```bash
 go test ./...              # All tests
 go test -cover ./...       # With coverage
@@ -113,7 +123,7 @@ go test -v ./...           # Verbose
 ## 📦 Database Schema
 
 - **hospitals**: Hospital information
-- **staffs**: Staff members and authentication  
+- **staffs**: Staff members and authentication
 - **patients**: Patient records
 
 See `migrations/001_initial_schema.sql` for complete schema.
@@ -126,5 +136,8 @@ This project is private and proprietary.
 
 ## 📧 Contact
 
-For questions or support, please contact the development team.
+- Author: Thanamin Akkharananwinit
+- Email: thanamin.akk@gmail.com
+- GitHub: https://github.com/thanamin
+- LinkedIn: https://www.linkedin.com/in/thanamin/
 
