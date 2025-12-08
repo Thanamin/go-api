@@ -81,8 +81,6 @@ curl http://localhost:3000/health
 
 Note: Use the PORT from your `.env` file
 
-## 🐳 Docker Database Commands
-
 ## 🛠️ Development
 
 **Hot reload (auto-restart on file changes)**
